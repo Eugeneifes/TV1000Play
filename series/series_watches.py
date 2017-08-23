@@ -5,6 +5,7 @@ import csv
 import datetime
 import xlsxwriter
 import json
+import StringIO
 
 
 def header(ws, start_date, end_date):
@@ -91,18 +92,14 @@ for title in series:
             "&q%5Bplatform_in%5D%5B%5D=" + "desktop"
 
             r = requests.get(query, cookies=cookie)
+            reader = csv.reader(StringIO.StringIO(r.content), delimiter=";")
+            next(reader)
 
-            with open("temp_database.txt", "w") as temp_file:
-                temp_file.write(r.content)
+            for row in reader:
 
-            with open("temp_database.txt", "r") as temp_file:
-                reader = csv.reader(temp_file, delimiter=";")
-                next(reader)
-                for row in reader:
-                    #print row[0], row[1]
+                ws.write(data_row, data_col, int(row[1]))
+                data_col += 1
 
-                    ws.write(data_row, data_col, int(row[1]))
-                    data_col += 1
             data_row += 1
             data_col = 3
     data_row = 1
