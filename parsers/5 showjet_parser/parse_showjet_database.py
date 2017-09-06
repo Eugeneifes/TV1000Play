@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import glob, os
+import glob
 import json
 import xlsxwriter
 
