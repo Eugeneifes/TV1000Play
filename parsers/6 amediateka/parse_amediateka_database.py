@@ -37,50 +37,58 @@ for film in films:
         if film['bundles'] == []:
             #pprint.pprint(film)
 
+            if {"id": film["serial_id"], "season": film['season_name'], "business_model": ""} not in memory:
 
-            ws.write(row, 0, film['serial_name'])
-            ws.write(row, 1, film['season_name'])
-            ws.write(row, 2, film['serial_original_name'])
-            ws.write(row, 3, "amediateka")
-            ws.write(row, 4, "")
-            ws.write(row, 5, film['year'])
-            row+=1
+                memory.append({"id": film["serial_id"], "season": film['season_name'], "business_model": ""})
+                ws.write(row, 0, film['serial_name'])
+                ws.write(row, 1, film['season_name'])
+                ws.write(row, 2, film['serial_original_name'])
+                ws.write(row, 3, "amediateka")
+                ws.write(row, 4, "")
+                ws.write(row, 5, int(film['year']))
+                row += 1
 
         else:
             for bundle in film['bundles']:
                 for element in bundles_data['bundles']:
                     if element['id'] == bundle['id']:
                         if element['object'] == 'tvod_bundle':
+                            if {"id": film["serial_id"], "season": film['season_name'], "business_model": "TVOD"} not in memory:
 
-                            ws.write(row, 0, film['serial_name'])
-                            ws.write(row, 1, film['season_name'])
-                            ws.write(row, 2, film['serial_original_name'])
-                            ws.write(row, 3, "amediateka")
-                            ws.write(row, 4, "TVOD")
-                            ws.write(row, 5, film['year'])
-                            row += 1
+                                memory.append({"id": film["serial_id"], "season": film['season_name'], "business_model": "TVOD"})
+                                ws.write(row, 0, film['serial_name'])
+                                ws.write(row, 1, film['season_name'])
+                                ws.write(row, 2, film['serial_original_name'])
+                                ws.write(row, 3, "amediateka")
+                                ws.write(row, 4, "TVOD")
+                                ws.write(row, 5, int(film['year']))
+                                row += 1
                         else:
-                            ws.write(row, 0, film['serial_name'])
-                            ws.write(row, 1, film['season_name'])
-                            ws.write(row, 2, film['serial_original_name'])
-                            ws.write(row, 3, "amediateka")
-                            ws.write(row, 4, "SVOD")
-                            ws.write(row, 5, film['year'])
-                            row += 1
+                            if {"id": film["serial_id"], "season": film['season_name'], "business_model": "SVOD"} not in memory:
+                                memory.append({"id": film["serial_id"], "season": film['season_name'], "business_model": "SVOD"})
+
+                                ws.write(row, 0, film['serial_name'])
+                                ws.write(row, 1, film['season_name'])
+                                ws.write(row, 2, film['serial_original_name'])
+                                ws.write(row, 3, "amediateka")
+                                ws.write(row, 4, "SVOD")
+                                ws.write(row, 5, int(film['year']))
+                                row += 1
 
 
     elif film['object'] == 'film':
 
         if film['bundles'] == []:
             #pprint.pprint(film)
-
-            ws.write(row, 0, film['name'])
-            ws.write(row, 1, "")
-            ws.write(row, 2, film['original_name'])
-            ws.write(row, 3, "amediateka")
-            ws.write(row, 4, "")
-            ws.write(row, 5, film['year'])
-            row+=1
+            if {"id": film["slug"], "business_model": ""} not in memory:
+                memory.append({"id": film["slug"], "business_model": ""})
+                ws.write(row, 0, film['name'])
+                ws.write(row, 1, "")
+                ws.write(row, 2, film['original_name'])
+                ws.write(row, 3, "amediateka")
+                ws.write(row, 4, "")
+                ws.write(row, 5, int(film['year']))
+                row+=1
 
         else:
             for bundle in film['bundles']:
@@ -88,21 +96,26 @@ for film in films:
                     if element['id'] == bundle['id']:
                         if element['object'] == 'tvod_bundle':
 
-                            ws.write(row, 0, film['name'])
-                            ws.write(row, 1, "")
-                            ws.write(row, 2, film['original_name'])
-                            ws.write(row, 3, "amediateka")
-                            ws.write(row, 4, "TVOD")
-                            ws.write(row, 5, film['year'])
-                            row += 1
+                            if {"id": film["slug"], "business_model": "TVOD"} not in memory:
+                                memory.append({"id": film["slug"], "business_model": "TVOD"})
+                                ws.write(row, 0, film['name'])
+                                ws.write(row, 1, "")
+                                ws.write(row, 2, film['original_name'])
+                                ws.write(row, 3, "amediateka")
+                                ws.write(row, 4, "TVOD")
+                                ws.write(row, 5, int(film['year']))
+                                row += 1
                         else:
-                            ws.write(row, 0, film['name'])
-                            ws.write(row, 1, "")
-                            ws.write(row, 2, film['original_name'])
-                            ws.write(row, 3, "amediateka")
-                            ws.write(row, 4, "SVOD")
-                            ws.write(row, 5, film['year'])
-                            row += 1
+
+                            if {"id": film["slug"], "business_model": "SVOD"} not in memory:
+                                memory.append({"id": film["slug"], "business_model": "SVOD"})
+                                ws.write(row, 0, film['name'])
+                                ws.write(row, 1, "")
+                                ws.write(row, 2, film['original_name'])
+                                ws.write(row, 3, "amediateka")
+                                ws.write(row, 4, "SVOD")
+                                ws.write(row, 5, int(film['year']))
+                                row += 1
 
 
 
