@@ -1,0 +1,84 @@
+<html>
+<head>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+     google.charts.load('current', {packages: ['corechart']});     
+     google.charts.setOnLoadCallback(draw_churn_rate_chart);
+     google.charts.setOnLoadCallback(draw_transactions_chart);
+
+     function draw_churn_rate_chart() {
+
+     var data = google.visualization.arrayToDataTable([
+      ['Month', 'CR'],
+      ['january16',  0.668380462725],
+      ['february16',  0.759493670886],
+      ['march16',  0.983766233766],
+      ['april16',  0.49863760218],
+      ['may16',  0.739549839228],
+      ['june16',  0.713043478261],
+      ['july16',  0.553971486762],
+      ['august16',  0.467669172932],
+      ['september16',  0.479297365119],
+      ['october16',  0.530655391121],
+      ['november16',  0.707475622969],
+      ['december16',  0.294488188976],
+      ['january17',  0.546192259675],
+      ['february17',  0.361339923119],
+      ['march17',  0.430624654505],
+      ['april17',  0.560240963855],
+
+   ]);
+
+   var options = {
+      title: 'Churn Rate'
+   }; 
+
+   // Instantiate and draw the chart.
+   var chart = new google.visualization.ColumnChart(document.getElementById('churn_rate'));
+   chart.draw(data, options);
+}
+
+ function draw_transactions_chart() {
+
+     var data = google.visualization.arrayToDataTable([
+      ['Month', 'CR'],
+      ['january16',  5],
+      ['february16',  5],
+      ['march16',  6],
+      ['april16',  7],
+      ['may16',  8],
+      ['june16',  9],
+      ['july16',  8],
+      ['august16',  8],
+      ['september16',  6],
+      ['october16',  6],
+      ['november16',  6],
+      ['december16',  7],
+      ['january17',  8],
+      ['february17',  9],
+      ['march17',  1],
+      ['april17',  2],
+
+   ]);
+
+   var options = {
+      title: 'Churn Rate'     
+   }; 
+
+   // Instantiate and draw the chart.
+   var chart = new google.visualization.ColumnChart(document.getElementById('transactions'));
+   chart.draw(data, options);
+}
+
+</script>
+</head>
+<body>
+    <!--Table and divs that hold the pie charts-->
+    <table class="columns">
+      <tr>
+        <td><div id="churn_rate" style="border: 1px solid #ccc"></div></td>
+        <td><div id="transactions" style="border: 1px solid #ccc"></div></td>
+      </tr>
+    </table>
+  </body>
+</html>
