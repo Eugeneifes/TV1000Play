@@ -16,7 +16,7 @@ from datetime import timedelta
 SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
 DISCOVERY_URI = ('https://analyticsreporting.googleapis.com/$discovery/rest')
 KEY_FILE_LOCATION = 'client_secrets.p12'
-SERVICE_ACCOUNT_EMAIL = 'eugene@python-149108.iam.gserviceaccount.com'
+SERVICE_ACCOUNT_EMAIL = ''
 
 
 """платформы для отчетов"""
